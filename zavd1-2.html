@@ -2,6 +2,55 @@
 <html>
 <head>
   <title>Лабораторна робота 5</title>
+  <script>
+    function generateAndCalculateArray() {
+        const arraySize = parseInt(document.getElementById('arraySize').value);
+        const inputArray = new Array(arraySize).fill().map(() => Math.floor(Math.random() * 100));
+        document.getElementById('inputArrayOutput').innerText = inputArray.join(', ');
+    
+        const max = Math.max(...inputArray);
+        const outputArray = inputArray.map(item => max * item);
+        document.getElementById('outputArrayOutput').innerText = outputArray.join(', ');
+      }
+    
+      function sortArray() {
+        const outputArray = document.getElementById('outputArrayOutput').innerText.split(',').map(Number);
+        const sortedArray = insertionSort(outputArray);
+        document.getElementById('sortedArrayOutput').innerText = sortedArray.join(', ');
+      }
+    
+      function insertionSort(arr) {
+        for (let i = 1; i < arr.length; i++) {
+          let current = arr[i];
+          let j = i - 1;
+          while (j >= 0 && arr[j] < current) {
+            arr[j + 1] = arr[j];
+            j--;
+          }
+          arr[j + 1] = current;
+        }
+        return arr;
+      }
+    
+      function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+      }
+    
+      function clearDisplay() {
+        document.getElementById('display').value = '';
+      }
+    
+      function calculate() {
+        let result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+      }
+    
+      function calculateSquareRoot() {
+        let result = Math.sqrt(eval(document.getElementById('display').value));
+        document.getElementById('display').value = result;
+      }
+    
+    </script>
 </head>
 <body>
 <h2>Завдання 1:</h2>
@@ -54,55 +103,7 @@
 </div>
 
 
-<script>
-function generateAndCalculateArray() {
-    const arraySize = parseInt(document.getElementById('arraySize').value);
-    const inputArray = new Array(arraySize).fill().map(() => Math.floor(Math.random() * 100));
-    document.getElementById('inputArrayOutput').innerText = inputArray.join(', ');
 
-    const max = Math.max(...inputArray);
-    const outputArray = inputArray.map(item => max * item);
-    document.getElementById('outputArrayOutput').innerText = outputArray.join(', ');
-  }
-
-  function sortArray() {
-    const outputArray = document.getElementById('outputArrayOutput').innerText.split(',').map(Number);
-    const sortedArray = insertionSort(outputArray);
-    document.getElementById('sortedArrayOutput').innerText = sortedArray.join(', ');
-  }
-
-  function insertionSort(arr) {
-    for (let i = 1; i < arr.length; i++) {
-      let current = arr[i];
-      let j = i - 1;
-      while (j >= 0 && arr[j] < current) {
-        arr[j + 1] = arr[j];
-        j--;
-      }
-      arr[j + 1] = current;
-    }
-    return arr;
-  }
-
-  function appendToDisplay(value) {
-    document.getElementById('display').value += value;
-  }
-
-  function clearDisplay() {
-    document.getElementById('display').value = '';
-  }
-
-  function calculate() {
-    let result = eval(document.getElementById('display').value);
-    document.getElementById('display').value = result;
-  }
-
-  function calculateSquareRoot() {
-    let result = Math.sqrt(eval(document.getElementById('display').value));
-    document.getElementById('display').value = result;
-  }
-
-</script>
 
 </body>
 </html>
